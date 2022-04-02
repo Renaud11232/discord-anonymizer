@@ -17,6 +17,9 @@ class DiscordAnonymizer(nextcord.Client):
         self.__token = token
         self.__channel = channel
 
+    async def on_ready(self):
+        self.__logger.info("Bot is ready")
+
     async def on_message(self, message):
         if not message.guild:
             self.__logger.debug("Received message, content length is %d, tts is %r, with %d embeds, %d attachments and %d stickers" % (len(message.content), message.tts, len(message.embeds), len(message.attachments), len(message.stickers)))
