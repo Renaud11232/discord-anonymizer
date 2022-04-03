@@ -1,0 +1,11 @@
+version: "3"
+services:
+  discordanonymizer:
+    container_name: discordanonymizer
+    image: "ghcr.io/renaud11232/discordanonymizer"
+    environment:
+      TOKEN: yourtoken
+      CHANNEL: 123123
+      LOG_LEVEL: INFO
+      WATCHING: your DMs
+    restart: unless-stopped
