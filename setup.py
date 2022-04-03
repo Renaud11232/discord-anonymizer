@@ -8,7 +8,7 @@ def get_long_description():
 
 setuptools.setup(
     name="discordanonymizer",
-    version="0.0.1dev1",
+    version="0.1.0rc1",
     author="Renaud Gaspard",
     author_email="gaspardrenaud@hotmail.com",
     description="A simple bot that anonymously reposts received PM on a guild channel",
