@@ -67,7 +67,7 @@ docker-compose up -d
 You can install this bot by running the following command (a venv is recommended) :
 
 ```bash
-pip install "https://github.com/Renaud11232/JMusicBot-docker/archive/refs/heads/master.zip"
+pip install "https://github.com/Renaud11232/discord-anonymizer/archive/refs/heads/master.zip"
 ```
 
 Once it's installed you can start it either by setting the environment variables :
