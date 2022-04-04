@@ -13,7 +13,10 @@ class DiscordAnonymizer(nextcord.Client):
         handler.setFormatter(formatter)
         self.__logger.addHandler(handler)
         self.__logger.info("Initializing bot...")
-        nextcord.Client.__init__(self)
+        intents = nextcord.Intents.default()
+        intents.members = True
+        intents.messages = True
+        nextcord.Client.__init__(self, intents=intents)
         self.__token = token
         self.__channel = channel
         self.__watching = watching
@@ -25,7 +28,7 @@ class DiscordAnonymizer(nextcord.Client):
         self.__logger.info("Bot is ready")
 
     async def on_message(self, message):
-        if not message.guild:
+        if not message.guild and any(guild.get_member(message.author.id) is not None for guild in self.guilds):
             length = len(message.content)
             tts = message.tts
             embeds = len(message.embeds)
