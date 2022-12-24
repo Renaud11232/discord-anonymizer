@@ -26,6 +26,12 @@ def main():
                         default=os.environ.get("WATCHING") or "your DMs",
                         help="Watching status of the bot. If omitted, the value of the `WATCHING` environment variable will be used. Defaults to `your DMs`"
                         )
+    parser.add_argument("--user",
+                        action="append",
+                        type=int,
+                        default=[int(user) for user in list(filter(None, (os.environ.get("USERS") or "").split(",")))],
+                        help="The list of user IDs that are allowed to use the bot, if left empty, all users are allowed"
+                        )
     args = parser.parse_args()
-    bot = DiscordAnonymizer(args.token, args.channel, args.log_level, args.watching)
+    bot = DiscordAnonymizer(args.token, args.channel, args.log_level, args.watching, args.user)
     bot.run()

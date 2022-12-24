@@ -18,12 +18,13 @@ You can run this bot using docker CLI, docker-compose or running it directly on 
 The various arguments the bots takes can be set using a command line flag or using an environment variable :
 If the same option is set using both the command flag and the environment variable, the environment variable will be ignored.
 
-| CLI flag      | Environment variable | Description                                                                                        | Required | Default    |
-|---------------|----------------------|----------------------------------------------------------------------------------------------------|----------|------------|
-| `--token`     | `TOKEN`              | The Discord bot token used to access the Discord API                                               | Yes      |            |
-| `--channel`   | `CHANNEL`            | The channel ID where all received messages will be reposted                                        | Yes      |            |
-| `--log-level` | `LOG_LEVEL`          | The log level of the bot. The bot will never log the content of the received message or its author | No       | `INFO`     |
-| `--watching`  | `WATCHING`           | The watching status of the bot                                                                     | No       | `your DMs` |
+| CLI flag              | Environment variable      | Description                                                                                               | Required | Default    |
+|-----------------------|---------------------------|-----------------------------------------------------------------------------------------------------------|----------|------------|
+| `--token`             | `TOKEN`                   | The Discord bot token used to access the Discord API                                                      | Yes      |            |
+| `--channel`           | `CHANNEL`                 | The channel ID where all received messages will be reposted                                               | Yes      |            |
+| `--log-level`         | `LOG_LEVEL`               | The log level of the bot. The bot will never log the content of the received message or its author        | No       | `INFO`     |
+| `--watching`          | `WATCHING`                | The watching status of the bot                                                                            | No       | `your DMs` |
+| `--user` (repeatable) | `USERS` (comma separated) | The list of users IDs that are allowed to use the bot. If left empy, all users are allowed to use the bot | No       | `<empty>`  |
 
 
 ### Docker CLI
@@ -37,6 +38,7 @@ docker run \
   -e CHANNEL=123123 \
   -e LOG_LEVEL=INFO \
   -e WATCHING=your\ DMs \
+  -e USERS=111111,222222,333333 \
   ghcr.io/renaud11232/discordanonymizer
 ```
 
@@ -55,6 +57,7 @@ services:
       CHANNEL: 123123
       LOG_LEVEL: INFO
       WATCHING: your DMs
+      USERS: 11111,22222,33333
     restart: unless-stopped
 ```
 
@@ -76,6 +79,7 @@ export TOKEN=yourtoken
 export CHANNEL=123123
 export LOG_LEVEL=INFO
 export WATCHING=your\ DMs
+export USERS=11111,22222,33333
 discordanonymizer
 ```
 
@@ -85,5 +89,8 @@ discordanonymizer \
   --token yourtoken \
   --channel 123123 \
   --log-level INFO \
-  --watching "your DMs"
+  --watching "your DMs" \
+  --user 11111 \
+  --user 22222 \
+  --user 33333
 ```
